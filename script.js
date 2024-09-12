@@ -94,13 +94,13 @@ function dealerDrawCard(isFirstCard = false) {
                 if (dealerScore > 21 || dealerScore < playerScore) {
                     messageElem.textContent = '¡Ganaste!';
                 } else if (dealerScore > playerScore) {
-                    messageElem.textContent = '¡Perdiste! El crupier gana.';
+                    messageElem.textContent = '¡Perdiste! El BOT gana.';
                 } else {
                     messageElem.textContent = '¡Empate!';
                 }
             }
         })
-        .catch(error => console.error('Error al robar carta del crupier:', error));
+        .catch(error => console.error('Error al robar carta del BOT: ', error));
 }
 
 
@@ -114,8 +114,8 @@ function stand() {
 function addCardToHand(card, handElem, isHidden = false) {
     const cardImg = document.createElement('img');
     if (isHidden) {
-        cardImg.src = 'media/card-back.png'; // Imagen de la parte trasera de la carta
-        cardImg.dataset.hiddenCard = card.image; // Guardar la URL de la carta real para revelarla después
+        cardImg.src = 'https://deckofcardsapi.com/static/img/back.png';
+        cardImg.dataset.hiddenCard = card.image;
     } else {
         cardImg.src = card.image;
     }

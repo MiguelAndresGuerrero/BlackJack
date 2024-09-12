@@ -80,12 +80,18 @@ p, .opciones {
     margin-top: 20rem;
     font-size: 20px;
     border-radius: 30px;
-    background-color: #34495e;
+    background-color: #e67e22;
     border: 2px solid black;
     cursor: pointer;
 }
 
 .boton_inicio a{
     text-decoration: none;
-    color: #e74c3c;
+    color: #34495e;
+}
+
+.boton_inicio:hover{
+    transition: 0.5s;
+    transform: scale(1.5 ) rotate(360deg);
+    border: 2px solid #ecf0f1;
 }
