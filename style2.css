@@ -1,32 +1,40 @@
-body, html {
+body {
+    margin: 0;
+    padding: 0;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-image: url(https://blog.sportium.es/wp-content/uploads/2023/06/fold-poker.jpg);
+}
+
+html{
     margin: 0;
     padding: 0;
     height: 100%;
-    font-family: 'Arial', sans-serif;
-    background-color: #2c3e50;
-    color: #ecf0f1;
     display: flex;
-    justify-content: center;
     align-items: center;
+    justify-content: center;
+    font-family: 'Arial', sans-serif;
 }
 
 .contenedor {
     width: 90%;
-    max-width: 800px;
-    background-color: #34495e;
-    border-radius: 8px;
-    padding: 20px 30px;
-    box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
     overflow: auto;
     max-height: 90vh;
+    max-width: 800px;
+    padding: 20px 30px;
+    border-radius: 8px;
+    backdrop-filter: blur(50px);
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
 }
 
 h1, h2, h3 {
-    color: #e74c3c;
+    color: #ffffff;
     text-align: center;
     border-bottom: 2px solid #ecf0f1;
     padding-bottom: 10px;
     margin-bottom: 20px;
+    
 }
 
 h1 {
@@ -46,13 +54,14 @@ p, .opciones {
     font-size: 1.1em;
     margin-bottom: 20px;
     text-align: justify;
+    color: white;
 }
 
 .opciones {
     padding: 15px;
-    background-color: #e67e22;
+    border: 2px solid #ffc400a6;
     border-radius: 8px;
-    color: #2c3e50;
+    color: #ffffff;
     margin-top: 20px;
     font-weight: bold;
 }
@@ -61,7 +70,7 @@ p, .opciones {
     content: "Opciones de Juego:";
     display: block;
     font-size: 1.5em;
-    color: #e74c3c;
+    color: #ffffff;
     margin-bottom: 10px;
     text-align: center;
 }
@@ -77,7 +86,7 @@ p, .opciones {
 .boton_inicio{
     position: absolute;
     margin-left: 66rem;
-    margin-top: 20rem;
+    margin-top: -10rem;
     font-size: 20px;
     border-radius: 30px;
     background-color: #e67e22;
@@ -87,11 +96,15 @@ p, .opciones {
 
 .boton_inicio a{
     text-decoration: none;
-    color: #34495e;
+    color: #000000;
 }
 
 .boton_inicio:hover{
-    transition: 0.5s;
+    transition: 0.8s;
     transform: scale(1.5 ) rotate(360deg);
-    border: 2px solid #ecf0f1;
+    border: 2px solid #ff0000;
+}
+
+.boton_inicio a:hover{
+    color: #ecf0f1;
 }

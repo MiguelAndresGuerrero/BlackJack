@@ -1,3 +1,4 @@
+
 let deckId;
 let dealerScore = 0;
 let playerScore = 0;
@@ -22,16 +23,16 @@ btnStand.addEventListener('click', stand);
 // Iniciar un nuevo juego
 function startNewGame() {
     fetch('https://deckofcardsapi.com/api/deck/new/shuffle/?deck_count=1')
-        .then(res => res.json())
-        .then(data => {
-            deckId = data.deck_id;
-            resetGame();
-            drawCard();  // El jugador recibe su primera carta
-            drawCard();  // El jugador recibe su segunda carta
-            dealerDrawCard(true);  // El crupier recibe su primera carta oculta
-            dealerDrawCard(false); // El crupier recibe su segunda carta visible
-        })
-        .catch(error => console.error('Error al iniciar el juego:', error));
+    .then(res => res.json())
+    .then(data => {
+        deckId = data.deck_id;
+        resetGame();
+        drawCard();  // El jugador recibe su primera carta
+        drawCard();  // El jugador recibe su segunda carta
+        dealerDrawCard(true);  // El crupier recibe su primera carta oculta
+        dealerDrawCard(false); // El crupier recibe su segunda carta visible
+    })
+    .catch(error => console.error('Error al iniciar el juego:', error));
 }
 
 // Reiniciar el juego
@@ -51,58 +52,57 @@ function resetGame() {
 // Robar una carta para el jugador
 function drawCard() {
     if (!isPlayerTurn) return;
-
+    
     fetch(`https://deckofcardsapi.com/api/deck/${deckId}/draw/?count=1`)
-        .then(res => res.json())
-        .then(data => {
-            const card = data.cards[0];
-            addCardToHand(card, playerCardsElem);
-            playerScore += getCardValue(card);
-            playerScoreElem.textContent = `Puntuación: ${playerScore}`;
-
-            if (playerScore > 21) {
-                messageElem.textContent = '¡Te pasaste de 21! Perdiste.';
-                isPlayerTurn = false;
-            }
-        })
-        .catch(error => console.error('Error al robar carta:', error));
+    .then(res => res.json())
+    .then(data => {
+        const card = data.cards[0];
+        addCardToHand(card, playerCardsElem);
+        playerScore += getCardValue(card);
+        playerScoreElem.textContent = `Puntuación: ${playerScore}`;
+        
+        if (playerScore > 21) {
+            messageElem.textContent = '¡Te pasaste de 21! Perdiste 😓';
+            isPlayerTurn = false;
+        }
+    })
+    .catch(error => console.error('Error al robar carta:', error));
 }
 
 function dealerDrawCard(isFirstCard = false) {
     fetch(`https://deckofcardsapi.com/api/deck/${deckId}/draw/?count=1`)
-        .then(res => res.json())
-        .then(data => {
-            const card = data.cards[0];
-
-            if (isFirstCard) {
-                dealerFirstCard = card;
-                addCardToHand(card, dealerCardsElem, true); // Añadir la carta oculta
+    .then(res => res.json())
+    .then(data => {
+        const card = data.cards[0];
+        
+        if (isFirstCard) {
+            dealerFirstCard = card;
+            addCardToHand(card, dealerCardsElem, true); // Añadir la carta oculta
+        } else {
+            addCardToHand(card, dealerCardsElem);
+            dealerScore += getCardValue(card);
+            dealerScoreElem.textContent = `Puntuación: ${dealerScore}`;
+        }
+        
+        // Verifica si el crupier se pasa de 21
+        if (dealerScore > 21) {
+            messageElem.textContent = '¡El BOT se pasó de 21! Ganaste 🙌';
+            isPlayerTurn = false;
+        } else if (dealerScore < 17 && !isFirstCard) {
+            dealerDrawCard();
+        } else if (!isPlayerTurn) {
+            revealDealerFirstCard();
+            if (dealerScore > 21 || dealerScore < playerScore) {
+                messageElem.textContent = '¡Ganaste!';
+            } else if (dealerScore > playerScore) {
+                messageElem.textContent = '¡Perdiste! El BOT gana 😯';
             } else {
-                addCardToHand(card, dealerCardsElem);
-                dealerScore += getCardValue(card);
-                dealerScoreElem.textContent = `Puntuación: ${dealerScore}`;
+                messageElem.textContent = '¡Empate! 😫';
             }
-
-            // Verifica si el crupier se pasa de 21
-            if (dealerScore > 21) {
-                messageElem.textContent = '¡El crupier se pasó de 21! Ganaste.';
-                isPlayerTurn = false;
-            } else if (dealerScore < 17 && !isFirstCard) {
-                dealerDrawCard();
-            } else if (!isPlayerTurn) {
-                revealDealerFirstCard();
-                if (dealerScore > 21 || dealerScore < playerScore) {
-                    messageElem.textContent = '¡Ganaste!';
-                } else if (dealerScore > playerScore) {
-                    messageElem.textContent = '¡Perdiste! El BOT gana.';
-                } else {
-                    messageElem.textContent = '¡Empate!';
-                }
-            }
-        })
-        .catch(error => console.error('Error al robar carta del BOT: ', error));
+        }
+    })
+    .catch(error => console.error('Error al robar carta del BOT: ', error));
 }
-
 
 // Plantarse (termina el turno del jugador)
 function stand() {

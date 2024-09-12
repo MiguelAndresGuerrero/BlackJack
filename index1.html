@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title> Blackjack - Reglas </title>
+    <link rel="stylesheet" href="style2.css">
+
+</head>
+
+<body>
+    <div class="contenedor">
+        <div class="objetivo">
+            <h1><b>Objetivo del Juego</b></h1>
+            <p>
+                - Superar la mano del crupier sin pasarse de 21 puntos <br>
+                - Si tu mano supera los 21 puntos, pierdes automaticamente
+            </p>
+        </div>
+        <div class="valor">
+            <h2><b>Valor de las cartas</b></h2>
+            <p>
+                - Cartas Numericas (2-10): valen su numero <br>
+                - Cartas de figuras (J, Q, K): valen 10 puntos <br>
+                - As: Pueden valer 1 u 11, segun lo que mas le convenga
+            </p>
+        </div>
+        <div class="manoInicial">
+            <h3><b>Mano Inicial</b></h3>
+            <p>
+                - Cada jugador recibe dos cartas al comienzo del Juego <br>
+                - El crupier tambien recibe dos cartas, pero solo una está visible para los jugadores y la otra solo
+                esta boca abajo
+            </p>
+        </div>
+        <div class="opciones">
+            - Pedir: Puedes solicitar otra carta para aumentar tu Puntuación; puedes pedir tantas cartas como quieras,
+            pero si te pasas de 21 pierdes <br>
+            - plantarse: Decides no pedir mas cartas y mantienes tu Puntuación actual <br>
+        </div>
+        <div class="reglas_crupier">
+            <h2>Reglas del Crupier</h2>
+            <p>
+                - El crupier debe pedir cartas si su mano es de 16 puntos o menos <br>
+                - El crupier debe plantarse si su mano es de 17 puntos o más, aunque sea un 17 "blando" (una mano que
+                incluye un As que puede contarse como 11)
+            </p>
+        </div>
+    </div>
+    <button class="boton_inicio"><a href="index2.html"> Comenzar Juego </a></button>
+</body>
+<script src="script2.js"></script>
+
+</html>
