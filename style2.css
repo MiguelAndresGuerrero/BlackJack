@@ -1,110 +1,125 @@
 body {
+    font-family: Arial, sans-serif;
+    background-color: #f2f2f2;
     margin: 0;
     padding: 0;
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
     background-image: url(https://blog.sportium.es/wp-content/uploads/2023/06/fold-poker.jpg);
 }
 
-html{
-    margin: 0;
-    padding: 0;
-    height: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-family: 'Arial', sans-serif;
-}
-
 .contenedor {
-    width: 90%;
-    overflow: auto;
-    max-height: 90vh;
-    max-width: 800px;
-    padding: 20px 30px;
+    display: flex;
+    border-radius: 20px;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: 20px;
+    width: 80%;
+    margin: 0 auto;
+    padding: 20px;
+    backdrop-filter: blur(30px);
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.tarjeta {
+    background-color: #ffffffa6;
     border-radius: 8px;
-    backdrop-filter: blur(50px);
-    box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    flex: 1 1 calc(50% - 20px);
+    box-sizing: border-box;
 }
 
-h1, h2, h3 {
-    color: #ffffff;
-    text-align: center;
-    border-bottom: 2px solid #ecf0f1;
-    padding-bottom: 10px;
-    margin-bottom: 20px;
-    
-}
-
-h1 {
-    font-size: 2.2em;
-}
-
-h2 {
-    font-size: 1.8em;
-}
-
-h3 {
-    font-size: 1.6em;
-}
-
-p, .opciones {
-    line-height: 1.6;
-    font-size: 1.1em;
-    margin-bottom: 20px;
-    text-align: justify;
-    color: white;
-}
-
-.opciones {
-    padding: 15px;
-    border: 2px solid #ffc400a6;
-    border-radius: 8px;
-    color: #ffffff;
-    margin-top: 20px;
-    font-weight: bold;
-}
-
-.opciones::before {
-    content: "Opciones de Juego:";
-    display: block;
-    font-size: 1.5em;
-    color: #ffffff;
+.tarjeta h1, .tarjeta h2, .tarjeta h3 {
+    color: #333;
     margin-bottom: 10px;
-    text-align: center;
 }
 
-.contenedor > div {
-    margin-bottom: 40px;
-}
-
-.contenedor > div:last-child {
+.tarjeta p {
+    color: #666;
+    line-height: 1.3;
     margin-bottom: 0;
 }
 
-.boton_inicio{
-    position: absolute;
-    margin-left: 66rem;
-    margin-top: -10rem;
-    font-size: 20px;
-    border-radius: 30px;
-    background-color: #e67e22;
-    border: 2px solid black;
-    cursor: pointer;
+.boton_inicio {
+    display: block;
+    width: 200px;
+    margin: 20px auto;
+    padding: 10px 0;
+    text-align: center;
+    background-color: #ff000000;
+    color: white;
+    border-radius: 20px;
+    text-decoration: none;
+    font-size: 16px;
 }
 
-.boton_inicio a{
+.boton_inicio a {
+    color: white;
     text-decoration: none;
-    color: #000000;
 }
 
 .boton_inicio:hover{
-    transition: 0.8s;
-    transform: scale(1.5 ) rotate(360deg);
-    border: 2px solid #ff0000;
+    cursor: pointer;
+    transform: scale(1.6);
+    transform: rotate3d(360, 0, 90, 360deg);
+    transition: 1.5s;
+    background-color: #ffffffa6;
 }
 
-.boton_inicio a:hover{
-    color: #ecf0f1;
+/* Media queries para pantallas pequeñas */
+@media (max-width: 600px) {
+    .contenedor {
+        flex-direction: column;
+        width: 95%;
+        padding: 15px;
+    }
+
+    .tarjeta {
+        flex: 1 1 100%;
+    }
+
+    .boton_inicio {
+        width: 100%;
+        padding: 15px;
+        font-size: 18px;
+    }
+}
+
+/* Media queries para pantallas medianas */
+@media (min-width: 601px) and (max-width: 900px) {
+    .contenedor {
+        width: 90%;
+    }
+
+    .tarjeta {
+        flex: 1 1 calc(50% - 20px);
+    }
+
+    .boton_inicio {
+        width: 70%;
+        padding: 12px 0;
+        font-size: 16px;
+    }
+}
+
+/* Media queries para pantallas grandes */
+@media (min-width: 901px) {
+    .contenedor {
+        width: 70%;
+    }
+
+    .tarjeta {
+        flex: 1 1 calc(50% - 20px);
+    }
+
+    .boton_inicio {
+        width: 200px;
+        padding: 10px 0;
+        font-size: 16px;
+    }
+}
+
+#objetivo:hover{
+    transition: 0.5s;
+    transform: scale(1.2);
+    box-shadow: 3px 3px 30px 5px #333;
 }
